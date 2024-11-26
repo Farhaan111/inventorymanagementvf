@@ -1,10 +1,21 @@
 from rest_framework import serializers
-from .models import Item
+from .models import Item,Transaction
+
+
+class TransactionSerializer(serializers.ModelSerializer):
+    transdate = serializers.SerializerMethodField()  
+
+    class Meta:
+        model = Transaction
+        fields = ['id', 'item', 'transaction_type', 'quantity', 'transdate']
+
+    def get_transdate(self, obj):
+        return obj.date.strftime('%Y-%m-%d %H:%M:%S')  # Format date as YYYY-MM-DD HH:MM:SS
 
 class ItemSerializer(serializers.ModelSerializer):
     formatted_created_at = serializers.SerializerMethodField()
     formatted_updated_at = serializers.SerializerMethodField()
-
+    transactions= TransactionSerializer(many=True, read_only=True)
     class Meta:
         model = Item
         fields = [
