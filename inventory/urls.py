@@ -11,9 +11,6 @@ urlpatterns = [
     path('api/Location/', views.get_Location, name='get_Location'),
     path('api/Category/', views.get_Category, name='get_Category'),
 
-
-
-
 ]
 """
       The /api/ in the path is simply a convention 

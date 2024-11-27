@@ -2,3 +2,9 @@ __pycache__/
 *.pyc
 *.pyo
 .env
+*.h
+/.venv
+/Lib
+/Scripts
+pyvenv.cfg
+website/__pycache__/recognition.cpython-312.pyc
