@@ -81,6 +81,13 @@ class Transaction(models.Model):
         ('SC', 'Sold to Customer'),
         ('GD', 'Goods Damaged')
     ]
+    TRANSACTION_CATEGORY_General = [
+        ('G', 'General'),('SC', 'Sold to Customer'),
+        ('GD', 'Goods Damaged'), ('PS', 'Purchased from Supplier'),
+        ('PI', 'Produced In-house')
+      
+    ]
+    
 
     item = models.ForeignKey(Item, on_delete=models.CASCADE)  # Relates to the Item model
     transaction_type = models.CharField(
@@ -88,7 +95,7 @@ class Transaction(models.Model):
         choices=ITEM_CHOICES,
     )
     transaction_category = models.CharField(
-        max_length=10,default='IN(PS PI)/OUT(SC GD)'
+        max_length=10,choices=TRANSACTION_CATEGORY_General
     )
     supplier_id = models.ForeignKey(Supplier, null=True, blank=True, on_delete=models.SET_NULL)
     customer_id = models.ForeignKey(Customer, null=True, blank=True, on_delete=models.SET_NULL)
