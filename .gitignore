@@ -6,28 +6,4 @@
 __pycache__/
 
 # Ignore virtual environment directories
-.venv/
 venv/
-env/
-
-# Ignore database files (if any)
-*.sqlite3
-
-# Ignore IDE-specific files
-.vscode/
-.idea/
-
-# Ignore OS-specific files (macOS, Windows)
-.DS_Store
-Thumbs.db
-
-# Ignore migrations (if not required in version control)
-*/migrations/*
-
-# Ignore compiled and build artifacts
-build/
-dist/
-*.egg-info/
-
-# Ignore any cache files
-*.log
