@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-
 urlpatterns = [
     path('', views.home, name="home"),
     path('api/items/', views.get_items, name='get_items'),
@@ -10,6 +9,7 @@ urlpatterns = [
     path('api/Supplier/', views.get_Supplier, name='get_Supplier'),
     path('api/Location/', views.get_Location, name='get_Location'),
     path('api/Category/', views.get_Category, name='get_Category'),
+    path('api/register_customer/', views.register_customer, name='register_customer'),
 
 ]
 """

@@ -1,10 +1,33 @@
-__pycache__/
+.env
+# Ignore Python bytecode files
 *.pyc
 *.pyo
-.env
-*.h
-/.venv
-/Lib
-/Scripts
-pyvenv.cfg
-website/__pycache__/recognition.cpython-312.pyc
+*.pyd
+\__pycache__\
+
+# Ignore virtual environment directories
+.venv/
+venv/
+env/
+
+# Ignore database files (if any)
+*.sqlite3
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore OS-specific files (macOS, Windows)
+.DS_Store
+Thumbs.db
+
+# Ignore migrations (if not required in version control)
+*/migrations/*
+
+# Ignore compiled and build artifacts
+build/
+dist/
+*.egg-info/
+
+# Ignore any cache files
+*.log

@@ -3,6 +3,7 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.timezone import now
+from django.contrib.auth.hashers import make_password
 
 
 # Category Model
@@ -37,9 +38,17 @@ class Customer(models.Model):
     name = models.CharField(max_length=255)
     contact_info = models.CharField(max_length=255)
     address = models.CharField(max_length=500)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255, blank=False)
     triaaal=models.CharField(max_length=255)
     total_sale=models.IntegerField(default=0,validators=[MinValueValidator(0)])
+
+    def save(self, *args, **kwargs): #oh these parameters are used to store extra parameters if we pass em while calling the function
+        # Ensures that password is hashed before saving
+        if not self.password.startswith('pbkdf2_'): # Check if already hashed since If the password is already hashed (it starts with pbkdf2_), it will not hash it again.
+            self.password = make_password(self.password) #inbuilt hashing method
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.contrib.auth.hashers import make_password
 from .models import Category, Location, Supplier, Customer, Item, Transaction
 
 
@@ -26,7 +27,18 @@ class SupplierSerializer(serializers.ModelSerializer):
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
-        fields = ['id', 'name', 'contact_info', 'address', 'email']
+        fields = ['id', 'name', 'contact_info', 'address', 'email', 'password', 'total_sale']
+        extra_kwargs = {
+            'password': {'write_only': True},  # Prevent password from being returned in API responses
+        }
+
+    def create(self, validated_data):
+        """
+        Override the default create method to hash the password
+        before saving a new Customer instance.
+        """
+        validated_data['password'] = make_password(validated_data['password'])  # Hash the password
+        return super().create(validated_data)  # Create and return the new Customer instance
 
 # Item Serializer
 class ItemSerializer(serializers.ModelSerializer):

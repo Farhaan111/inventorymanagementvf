@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Item, Transaction, Customer,Category,Location,Supplier
+from rest_framework import status
+from .models import *
 from .serializers import *
 
 
@@ -16,30 +17,42 @@ def get_items(request):
 
 @api_view(['GET'])
 def get_transaction(request):
-    transaction = Transaction.objects.all()  # Get all items from the database
-    serializer = TransactionSerializer(transaction, many=True)  # Serialize the data
-    return Response(serializer.data)  # Return as JSON
+    transaction = Transaction.objects.all()
+    serializer = TransactionSerializer(transaction, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def get_Category(request):
-    category= Category.objects.all()  # Get all items from the database
-    serializer = CategorySerializer(category, many=True)  # Serialize the data
-    return Response(serializer.data)  # Return as JSON
+    category= Category.objects.all()
+    serializer = CategorySerializer(category, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
-def get_Customer(request):
-    customer = Customer.objects.all()  # Get all items from the database
-    serializer = CustomerSerializer(customer, many=True)  # Serialize the data
-    return Response(serializer.data)  # Return as JSON
+def get_Customer(request): #To be removed later or made admin-only
+    customer = Customer.objects.all()
+    serializer = CustomerSerializer(customer, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def get_Supplier(request):
-    supplier = Supplier.objects.all()  # Get all items from the database
-    serializer = SupplierSerializer(supplier, many=True)  # Serialize the data
-    return Response(serializer.data)  # Return as JSON
+    supplier = Supplier.objects.all()
+    serializer = SupplierSerializer(supplier, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def get_Location(request):
-    location = Location.objects.all()  # Get all items from the database
-    serializer = LocationSerializer(location, many=True)  # Serialize the data
-    return Response(serializer.data)  # Return as JSON
+    location = Location.objects.all()
+    serializer = LocationSerializer(location, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def register_customer(request):
+    """
+    Handle customer registration. Validate input and create a new customer.
+    """
+    serializer = CustomerSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()  # Calls the `create` method in the serializer
+        return Response({"message": "Customer registered successfully!"}, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
