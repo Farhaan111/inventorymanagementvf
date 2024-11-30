@@ -75,7 +75,7 @@ class Supplier(AbstractBaseUser):
 class CustomerManager(BaseUserManager):
     def create_customer(self, email, password=None, **extra_fields):
         if not email:
-            raise ValueError(_("The Email field must be set"))
+            raise ValueError(("The Email field must be set"))
         email = self.normalize_email(email)
         customer = self.model(email=email, **extra_fields)
         customer.set_password(password)  # Hash the password
