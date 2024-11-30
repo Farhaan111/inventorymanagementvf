@@ -40,19 +40,6 @@ class SupplierManager(BaseUserManager):
         supplier.save(using=self._db)
         return supplier
 
-class SupplierManager(BaseUserManager):
-    """
-    Custom manager for Supplier model.
-    """
-    def create_supplier(self, email, password=None, **extra_fields):
-        if not email:
-            raise ValueError("The Email field must be set")
-        email = self.normalize_email(email)
-        supplier = self.model(email=email, **extra_fields)
-        supplier.set_password(password)
-        supplier.save(using=self._db)
-        return supplier
-
 class Supplier(AbstractBaseUser):
     company_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
@@ -82,13 +69,14 @@ class CustomerManager(BaseUserManager):
         customer.save(using=self._db)
         return customer
     
-class Customer(models.Model):
+class Customer(AbstractBaseUser):
     name = models.CharField(max_length=255)
     contact_info = models.CharField(max_length=255)
     address = models.CharField(max_length=500)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255, blank=False)
     total_sale=models.IntegerField(default=0,validators=[MinValueValidator(0)])
+    last_login = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'  # This will be used to log in (instead of username)
     REQUIRED_FIELDS = ['name', 'email']  # Fields required to create the customer object

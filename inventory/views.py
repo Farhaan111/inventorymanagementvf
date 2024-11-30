@@ -6,7 +6,7 @@ from .models import *
 from rest_framework.status import HTTP_200_OK, HTTP_401_UNAUTHORIZED
 from .serializers import *
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.contrib.auth import authenticate
+from django.contrib.auth.hashers import check_password
 
 def home(request):
     return render(request, 'home.html')
@@ -72,18 +72,19 @@ def customer_login(request):
         return Response({"detail": "Email and password are required."}, status=HTTP_401_UNAUTHORIZED)
 
     # Authenticate the user
-    customer = authenticate(username=email, password=password)
+    try:
+        customer = Customer.objects.get(email=email)
+    except Customer.DoesNotExist:
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
-    if customer is not None and hasattr(customer, 'customer'):
-        # Generate tokens
+    if check_password(password, customer.password):  # Compare hashed passwords
         refresh = RefreshToken.for_user(customer)
-
         return Response({
             'access': str(refresh.access_token),
             'refresh': str(refresh),
-            'message': 'Login Successful'
-        }, status=HTTP_200_OK)
-    return Response({'detail': 'Invalid credentials or not a customer'}, status=status.HTTP_401_UNAUTHORIZED)
+        })
+    else:
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 #Supplier Authentication
@@ -107,13 +108,19 @@ def supplier_login(request):
     email = request.data.get('email')
     password = request.data.get('password')
 
-    supplier = authenticate(request, username=email, password=password)
-    if supplier is not None and hasattr(supplier, 'supplier'):
+    if not email or not password:
+        return Response({"detail": "Email and password are required."}, status=HTTP_401_UNAUTHORIZED)
+
+    try:
+        supplier = Supplier.objects.get(email=email)
+    except Supplier.DoesNotExist:
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+    if check_password(password, supplier.password):  # Compare hashed passwords
         refresh = RefreshToken.for_user(supplier)
         return Response({
             'access': str(refresh.access_token),
             'refresh': str(refresh),
-            'message': 'Login successful'
         })
     else:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)

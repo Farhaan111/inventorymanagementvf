@@ -73,6 +73,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React dev server
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'inventory.backends.CustomerBackend',
+    'inventory.backends.SupplierBackend',
+]
+
+
 ROOT_URLCONF = 'inventory_project.urls'
 
 TEMPLATES = [
