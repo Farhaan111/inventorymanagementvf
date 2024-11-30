@@ -11,8 +11,8 @@ urlpatterns = [
     path('api/Category/', views.get_Category, name='get_Category'),
     path('api/register/customer/', views.register_customer, name='register_customer'),
     path('api/register/supplier/', views.register_supplier, name='register_supplier'),
-    path('api/customer_login/', views.customer_login, name='customer_login'),
-    path('api/supplier_login/', views.supplier_login, name='supplier_login'),
+    path('api/login/customer', views.customer_login, name='customer_login'),
+    path('api/login/supplier', views.supplier_login, name='supplier_login'),
 
 ]
 """
