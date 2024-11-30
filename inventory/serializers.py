@@ -19,26 +19,90 @@ class LocationSerializer(serializers.ModelSerializer):
 
 # Supplier Serializer
 class SupplierSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Supplier model.
+    Handles serialization and validation for supplier data.
+    """
+    password = serializers.CharField(write_only=True, required=True, min_length=8)
+
     class Meta:
         model = Supplier
-        fields = ['id', 'name', 'contact_info', 'address']
+        fields = ['id', 'company_name', 'email', 'password', 'contact_info', 'address', 'total_sale', 'last_login']
+        extra_kwargs = {
+            'password': {'write_only': True},
+        }
+
+    def create(self, validated_data):
+        # Hash the password
+        validated_data['password'] = make_password(validated_data['password'])
+        # Create and return the Customer instance
+        return Supplier.objects.create(**validated_data)
+
+    def validate_email(self, value):
+        """
+        Custom validation to ensure the email is unique.
+        """
+        if Supplier.objects.filter(email=value).exists():
+            raise serializers.ValidationError("This email is already registered.")
+        return value
 
 # Customer Serializer
 class CustomerSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True, min_length=8)
     class Meta:
         model = Customer
-        fields = ['id', 'name', 'contact_info', 'address', 'email', 'password', 'total_sale']
+        fields = ['id', 'name', 'email', 'password', 'contact_info', 'address', 'total_sale']
         extra_kwargs = {
             'password': {'write_only': True},  # Prevent password from being returned in API responses
         }
 
     def create(self, validated_data):
+        # Hash the password
+        validated_data['password'] = make_password(validated_data['password'])
+        # Create and return the Customer instance
+        return Customer.objects.create(**validated_data)
+    
+    def validate_email(self, value):
         """
-        Override the default create method to hash the password
-        before saving a new Customer instance.
+        Custom validation to ensure the email is unique.
         """
-        validated_data['password'] = make_password(validated_data['password'])  # Hash the password
-        return super().create(validated_data)  # Create and return the new Customer instance
+        if Customer.objects.filter(email=value).exists():
+            raise serializers.ValidationError("This email is already registered.")
+        return value
+    
+
+# Login Serializer
+class LoginSerializer(serializers.Serializer):
+    """
+    Serializer for user login (applies to both customers and suppliers).
+    """
+    email = serializers.EmailField(required=True)
+    password = serializers.CharField(write_only=True, required=True, min_length=8)
+
+    def validate(self, data):
+        """
+        Validate login credentials.
+        """
+        email = data.get('email')
+        password = data.get('password')
+
+        # Check for either customer or supplier
+        customer = Customer.objects.filter(email=email).first()
+        supplier = Supplier.objects.filter(email=email).first()
+
+        user = customer or supplier
+        if not user:
+            raise serializers.ValidationError("No user with this email exists.")
+        
+        # Check password validity
+        if not user.check_password(password):
+            raise serializers.ValidationError("Invalid credentials. Please try again.")
+
+        # Return user type and instance
+        return {
+            "user": user,
+            "type": "customer" if customer else "supplier",
+        }
 
 # Item Serializer
 class ItemSerializer(serializers.ModelSerializer):

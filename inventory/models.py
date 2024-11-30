@@ -4,7 +4,7 @@ from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.timezone import now
 from django.contrib.auth.hashers import make_password
-
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 # Category Model
 class Category(models.Model):
@@ -24,24 +24,76 @@ class Location(models.Model):
 
 
 # Supplier Model
-class Supplier(models.Model):
-    name = models.CharField(max_length=255)
+class SupplierManager(BaseUserManager):
+    """
+    Custom manager for creating suppliers.
+    """
+    def create_supplier(self, email, password=None, **extra_fields):
+        """
+        Create and return a supplier with an email and password.
+        """
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        supplier = self.model(email=email, **extra_fields)
+        supplier.set_password(password)  # Hash the password before saving
+        supplier.save(using=self._db)
+        return supplier
+
+class SupplierManager(BaseUserManager):
+    """
+    Custom manager for Supplier model.
+    """
+    def create_supplier(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError("The Email field must be set")
+        email = self.normalize_email(email)
+        supplier = self.model(email=email, **extra_fields)
+        supplier.set_password(password)
+        supplier.save(using=self._db)
+        return supplier
+
+class Supplier(AbstractBaseUser):
+    company_name = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255, blank=False)
     contact_info = models.CharField(max_length=255)
-    address = models.CharField(max_length=500)
-    total_purchase=models.IntegerField(default=0,validators=[MinValueValidator(0)])
+    address = models.TextField()
+    total_sale = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    last_login = models.DateTimeField(auto_now_add=True)
+
+    objects = SupplierManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['company_name','email', 'contact_info', 'address']
+
     def __str__(self):
-        return self.name
+        return self.company_name
 
 
 # Customer Model
+class CustomerManager(BaseUserManager):
+    def create_customer(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError(_("The Email field must be set"))
+        email = self.normalize_email(email)
+        customer = self.model(email=email, **extra_fields)
+        customer.set_password(password)  # Hash the password
+        customer.save(using=self._db)
+        return customer
+    
 class Customer(models.Model):
     name = models.CharField(max_length=255)
     contact_info = models.CharField(max_length=255)
     address = models.CharField(max_length=500)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255, blank=False)
-    triaaal=models.CharField(max_length=255)
     total_sale=models.IntegerField(default=0,validators=[MinValueValidator(0)])
+
+    USERNAME_FIELD = 'email'  # This will be used to log in (instead of username)
+    REQUIRED_FIELDS = ['name', 'email']  # Fields required to create the customer object
+    
+    objects = CustomerManager()
 
     def save(self, *args, **kwargs): #oh these parameters are used to store extra parameters if we pass em while calling the function
         # Ensures that password is hashed before saving
