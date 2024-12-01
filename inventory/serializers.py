@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from .models import Category, Location, Supplier, Customer, Item, Transaction
+from .models import Category, Location, Supplier, Customer, Item, Transaction,Service_User
 
 
 # Category Serializer
@@ -89,8 +89,8 @@ class LoginSerializer(serializers.Serializer):
         # Check for either customer or supplier
         customer = Customer.objects.filter(email=email).first()
         supplier = Supplier.objects.filter(email=email).first()
-
-        user = customer or supplier
+        service_user = Service_User.objects.filter(email=email).first()
+        user = customer or supplier or service_user
         if not user:
             raise serializers.ValidationError("No user with this email exists.")
         
@@ -101,7 +101,7 @@ class LoginSerializer(serializers.Serializer):
         # Return user type and instance
         return {
             "user": user,
-            "type": "customer" if customer else "supplier",
+            "type": "customer" if customer else "supplier" if supplier else "service_user",
         }
 
 # Item Serializer
@@ -145,4 +145,28 @@ class TransactionSerializer(serializers.ModelSerializer):
 
     def get_transdate(self, obj):
         return obj.transdate.strftime('%Y-%m-%d %H:%M:%S')
+#__________________________________________________________________________________________________________________________
+class Service_UserSerializer(serializers.ModelSerializer):
+   
+    password = serializers.CharField(write_only=True, required=True, min_length=8)
 
+    class Meta:
+        model = Service_User
+        fields = ['id', 'username', 'email', 'password', 'perm', 'last_login']
+        extra_kwargs = {
+            'password': {'write_only': True},
+        }
+
+    def create(self, validated_data):
+        # Hash the password
+        validated_data['password'] = make_password(validated_data['password'])
+        # Create and return the Customer instance
+        return Service_User.objects.create(**validated_data)
+
+    def validate_email(self, value):
+        """
+        Custom validation to ensure the email is unique.
+        """
+        if Service_User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("This email is already registered.")
+        return value

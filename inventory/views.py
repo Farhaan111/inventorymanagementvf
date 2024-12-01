@@ -124,3 +124,39 @@ def supplier_login(request):
         })
     else:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+#___________________________________________________________________________________________________________________
+#Service_User Authentication
+@api_view(['POST'])
+def register_service_user(request):
+
+    serializer = Service_UserSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'message': 'Service_User registered successfully'}, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def service_user_login(request):
+
+    email = request.data.get('email')
+    password = request.data.get('password')
+
+    if not email or not password:
+        return Response({"detail": "Email and password are required."}, status=HTTP_401_UNAUTHORIZED)
+
+    try:
+        service_user = Service_User.objects.get(email=email)
+    except Service_User.DoesNotExist:
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+    if check_password(password, service_user.password):  # Compare hashed passwords
+        refresh = RefreshToken.for_user(service_user)
+        return Response({
+            'success':"yay",
+            'access': str(refresh.access_token),
+            'refresh': str(refresh),
+        })
+    else:
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)

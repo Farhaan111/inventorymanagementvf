@@ -76,6 +76,7 @@ CORS_ALLOWED_ORIGINS = [
 AUTHENTICATION_BACKENDS = [
     'inventory.backends.CustomerBackend',
     'inventory.backends.SupplierBackend',
+    'inventory.backends.Service_UserBackend',
 ]
 
 

@@ -22,7 +22,7 @@ class Location(models.Model):
     def __str__(self):
         return f"{self.loc} ({self.area_code})"
 
-
+#___________________________________________________________________________________________________________________________
 # Supplier Model
 class SupplierManager(BaseUserManager):
     """
@@ -56,7 +56,7 @@ class Supplier(AbstractBaseUser):
 
     def __str__(self):
         return self.company_name
-
+#___________________________________________________________________________________________________________________
 
 # Customer Model
 class CustomerManager(BaseUserManager):
@@ -176,3 +176,30 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"{self.transaction_type} - {self.item.name} - {self.transaction_category}"
+#__________________________________________________________________________________________________________________________
+#user model
+class Service_UserManager(BaseUserManager):
+  
+    def Service_User(self, email, password=None, **extra_fields):
+        
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)  # Hash the password before saving
+        user.save(using=self._db)
+        return user
+
+class Service_User(AbstractBaseUser):
+    username = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255, blank=False)
+    perm = models.IntegerField(default=5, validators=[MinValueValidator(0)])
+    last_login = models.DateTimeField(auto_now_add=True)
+
+    objects = Service_UserManager()
+
+    USERNAME_FIELD = 'email'
+
+    def __str__(self):
+        return self.company_name

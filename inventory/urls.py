@@ -11,9 +11,10 @@ urlpatterns = [
     path('api/Category/', views.get_Category, name='get_Category'),
     path('api/register/customer/', views.register_customer, name='register_customer'),
     path('api/register/supplier/', views.register_supplier, name='register_supplier'),
+    path('api/register/service_user/', views.register_service_user, name='register_service_user'),
     path('api/login/customer', views.customer_login, name='customer_login'),
     path('api/login/supplier', views.supplier_login, name='supplier_login'),
-
+    path('api/login/service_user', views.service_user_login, name='service_user_login'),
 ]
 """
       The /api/ in the path is simply a convention 
