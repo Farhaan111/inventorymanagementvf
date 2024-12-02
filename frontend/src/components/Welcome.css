@@ -1,0 +1,88 @@
+.welcome-page {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .bg-image {
+    margin-top: 4%;
+    margin-left: 39%;
+    z-index: -1;
+    max-width: 90%; /* Ensures responsiveness */
+    height: 50%;
+    opacity: 0.17;
+  }
+
+  .welcome{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; 
+    color: black;
+    z-index: 2;
+    font-size: 120%;
+  }
+
+  .welcome-text {
+    background: linear-gradient(to right, #0F1961, #9166A0, #FD355F);
+    -webkit-background-clip: text; /* Clip the gradient to the text */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+    background-clip: text;
+    font-weight: 600;
+    font-size: 500%;
+  }
+  
+  .button-container {
+    left: 44%;
+    top: 5%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sign-up-button{
+    background-color: #614A89;
+    color: #E9D4FE;
+    border-radius: 6px;
+    border-color: transparent;
+    padding: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 1px 4px 4px #d3d1d1;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .sign-up-button:hover{
+    background-color: #34254d;
+    color: #d5b7f3;
+  }
+
+  .sign-up-button:active{
+    transform: scale(0.95);
+  }
+
+  .sign-in-button{
+    background-color: #e4dafb;
+    color: #D04A7B;
+    border-radius: 6px;
+    border-color: transparent;
+    padding: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2%;
+    box-shadow: 1px 3px 3px #d3d1d1;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .sign-in-button:hover{
+    background-color: #d0c3f1;
+    color: #872f4f;
+  }
+
+  .sign-in-button:active{
+    transform: scale(0.95);
+  }

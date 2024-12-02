@@ -1,0 +1,27 @@
+.nav-underline {
+    text-decoration: underline;
+  }
+  
+  .nav-underline.active {
+    font-weight: bold;
+  }
+.navbar{
+  box-shadow: 1px 3px 3px #f0ecec;
+}
+  .navbar .nav-link {
+    background: linear-gradient(to right, #0F1961, #9166A0, #FD355F);
+    -webkit-background-clip: text; /* Clip the gradient to the text */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+    background-clip: text;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Hover effect to slightly emphasize text */
+  .navbar .nav-link:hover {
+    opacity: 0.8; /* Slight fade effect */
+  }
+
+  .navbar .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+  }
