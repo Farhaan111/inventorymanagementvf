@@ -6,8 +6,8 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Pricing from "./components/Pricing";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
+import SignIn from "./components/SignUp";
+import SignUp from "./components/SignIn";
 
 function App() {
   return (

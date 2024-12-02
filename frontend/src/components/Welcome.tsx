@@ -15,10 +15,10 @@ function WelcomePage() {
       </div>
       <div className="button-container">
         <Link to="/signin" className="sign-up-button">
-          Sign In
+          Sign-Up
         </Link>
         <Link to="/signup" className="sign-in-button">
-          Sign Up
+          Sign-In
         </Link>
       </div>
     </div>

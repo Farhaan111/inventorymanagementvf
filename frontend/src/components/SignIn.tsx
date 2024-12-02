@@ -1,22 +1,21 @@
+import { Link } from "react-router-dom";
 import "./SignIn.css";
 
-function SignInPage() {
+function SignIn() {
   return (
     <div className="sign-in-page">
       <div className="register-section">
         <h2 className="register-heading">Register</h2>
         <form className="register-form">
           <input type="text" placeholder="username" required />
-          <input type="email" placeholder="e-mail@email.com" required />
           <input type="password" placeholder="password" required />
-          <input type="password" placeholder="confirm password" required />
-          <div className="button-su-container">
-            <button className="sign-up-button-su" type="submit">
-              Sign-Up
-            </button>
-            <a href="/signin" className="sign-in-button-su">
+          <div className="button-si-container">
+            <button className="sign-up-button-si" type="submit">
               Sign-In
-            </a>
+            </button>
+            <Link to="/signin" className="sign-in-button-su">
+              Sign-Up
+            </Link>
           </div>
         </form>
       </div>
@@ -24,4 +23,4 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default SignIn;

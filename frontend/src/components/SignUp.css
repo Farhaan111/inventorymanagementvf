@@ -51,7 +51,7 @@ body {
     border-radius: 5px;
   }
 
-  .button-si-container {
+  .button-su-container {
     display: flex; /* Align items in a row */
     justify-content: center; /* Center the buttons horizontally */
     align-items: center; /* Align them vertically in the container */
@@ -60,7 +60,7 @@ body {
     z-index: 1;
   }
   
-  .sign-up-button-si {
+  .sign-up-button-su {
     background-color: #614A89;
     color: #E9D4FE;
     border-radius: 6px;
@@ -72,16 +72,16 @@ body {
     text-decoration: none;
   }
   
-  .sign-up-button-si:hover {
+  .sign-up-button-su:hover {
     background-color: #34254d;
     color: #d5b7f3;
   }
   
-  .sign-up-button-si:active {
+  .sign-up-button-su:active {
     transform: scale(0.95);
   }
   
-  .sign-in-button-si {
+  .sign-in-button-su {
     color: #D04A7B;
     border-radius: 6px;
     width: 200px;
@@ -93,12 +93,12 @@ body {
     margin-right: -22%;
   }
   
-  .sign-in-button-si:hover {
+  .sign-in-button-su:hover {
     background-color: transparent;
     color: #af2f5e;
   }
   
-  .sign-in-button-si:active {
+  .sign-in-button-su:active {
     transform: scale(0.95);
   }
   
