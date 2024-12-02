@@ -19,17 +19,19 @@ body {
     height: 50%;
     opacity: 0.17;
     background-attachment: fixed;
+    position: absolute;
   }
 
   .welcome{
     position: absolute;
-    top: 44%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center; 
     color: black;
     z-index: 2;
     font-size: 120%;
+    letter-spacing: 5px;
   }
 
   .welcome-text {
@@ -39,12 +41,12 @@ body {
     background-clip: text;
     font-weight: 600;
     font-size: 500%;
-    margin-top: -5%;
+    margin-bottom: -2%;
   }
   
   .button-container {
-    left: 44%;
-    top: 5%;
+    left: 40%;
+    top: 80%;
     position: relative;
     z-index: 1;
   }
@@ -54,11 +56,9 @@ body {
     color: #E9D4FE;
     border-radius: 6px;
     border-color: transparent;
-    padding: 6px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 15px 25px;
     box-shadow: 1px 4px 4px #d3d1d1;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     text-decoration: none;
   }
@@ -77,12 +77,10 @@ body {
     color: #D04A7B;
     border-radius: 6px;
     border-color: transparent;
-    padding: 6px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 15px 25px;
     margin-left: 2%;
-    box-shadow: 1px 3px 3px #d3d1d1;
-    font-size: 15px;
+    box-shadow: 1px 3px 3px #eae6e6;
+    font-size: 18px;
     font-weight: 600;
     text-decoration: none;
   }

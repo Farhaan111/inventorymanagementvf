@@ -10,11 +10,15 @@ function SignInPage() {
           <input type="email" placeholder="e-mail@email.com" required />
           <input type="password" placeholder="password" required />
           <input type="password" placeholder="confirm password" required />
-          <button type="submit">Sign-Up</button>
+          <div className="button-su-container">
+            <button className="sign-up-button-su" type="submit">
+              Sign-Up
+            </button>
+            <a href="/signin" className="sign-in-button-su">
+              Sign-In
+            </a>
+          </div>
         </form>
-        <a href="/signin" className="sign-in-link">
-          Sign-In
-        </a>
       </div>
     </div>
   );

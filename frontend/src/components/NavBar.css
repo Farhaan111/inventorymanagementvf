@@ -32,6 +32,7 @@
   gap: 20px; /* Add spacing between links */
   margin: 0;
   padding: 0;
+  font-size: 20px;
 }
 
 .nav-item {

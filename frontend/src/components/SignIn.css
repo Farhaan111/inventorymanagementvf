@@ -39,7 +39,7 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 300px;
+    width: 350px;
   }
   
   .register-form input {
@@ -50,29 +50,55 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-  
-  .register-form button {
-    background-color: #8a2be2;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
+
+  .button-su-container {
+    display: flex; /* Align items in a row */
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Align them vertically in the container */
+    gap: 22%; /* Add space between the buttons */
+    position: relative; 
+    z-index: 1;
   }
   
-  .register-form button:hover {
-    background-color: #6a1cb2;
-  }
-  
-  .sign-in-link {
-    color: #8a2be2;
+  .sign-up-button-su {
+    background-color: #614A89;
+    color: #E9D4FE;
+    border-radius: 6px;
+    border-color: transparent;
+    padding: 10px 20px; /* Shorthand for padding */
+    box-shadow: 1px 4px 4px #d3d1d1;
+    font-size: 15px;
+    font-weight: 600;
     text-decoration: none;
-    margin-top: 10px;
-    display: inline-block;
   }
   
-  .sign-in-link:hover {
-    text-decoration: underline;
+  .sign-up-button-su:hover {
+    background-color: #34254d;
+    color: #d5b7f3;
+  }
+  
+  .sign-up-button-su:active {
+    transform: scale(0.95);
+  }
+  
+  .sign-in-button-su {
+    color: #D04A7B;
+    border-radius: 6px;
+    width: 200px;
+    border-color: transparent;
+    padding: 12px 20px;/* Shorthand for padding */
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: -22%;
+  }
+  
+  .sign-in-button-su:hover {
+    background-color: transparent;
+    color: #af2f5e;
+  }
+  
+  .sign-in-button-su:active {
+    transform: scale(0.95);
   }
   

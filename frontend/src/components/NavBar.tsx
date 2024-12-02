@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./NavBar.css";
 
@@ -10,7 +10,7 @@ function NavBar() {
     <li className="nav-item">
       <NavLink
         to={to}
-        className={({ isActive }) =>
+        className={() =>
           `nav-link ${activeLink === to ? "nav-underline active" : ""}`
         }
         onClick={() => setActiveLink(to)} // Update active link on click
@@ -22,17 +22,18 @@ function NavBar() {
 
   return (
     <nav className="navbar d-flex justify-content-between align-items-center p-2">
-      <img
-        src="/images/trackify.png"
-        alt="Trackify Logo"
-        className="navbar-brand"
-        style={{ height: "40px" }}
-      />
+      <Link to="/" className="navbar-brand">
+        <img
+          src="/images/trackify.png"
+          alt="Trackify Logo"
+          style={{ height: "40px" }}
+        />
+      </Link>
       <ul className="nav">
-        {renderNavLink("/", "Home")}
-        {renderNavLink("/about", "About")}
-        {renderNavLink("/contact", "Contact Us")}
-        {renderNavLink("/pricing", "Pricing")}
+        {renderNavLink("/", "home")}
+        {renderNavLink("/about", "about")}
+        {renderNavLink("/contact", "contact us")}
+        {renderNavLink("/pricing", "pricing")}
       </ul>
     </nav>
   );
