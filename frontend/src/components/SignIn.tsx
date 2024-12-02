@@ -1,22 +1,23 @@
-interface SignInProps {
-  onSignIn: () => void; // Function to be called when the user signs in
-}
+import "./SignIn.css";
 
-const SignIn = ({ onSignIn }: SignInProps) => {
-  const handleSignIn = () => {
-    // Simulate sign-in process and call the onSignIn function
-    onSignIn();
-  };
-
+function SignInPage() {
   return (
-    <div className="signin-page">
-      <h1>Sign In</h1>
-      <p>Enter your credentials to sign in.</p>
-      <button onClick={handleSignIn} className="btn btn-primary">
-        Sign In
-      </button>
+    <div className="sign-in-page">
+      <div className="register-section">
+        <h2 className="register-heading">Register</h2>
+        <form className="register-form">
+          <input type="text" placeholder="username" required />
+          <input type="email" placeholder="e-mail@email.com" required />
+          <input type="password" placeholder="password" required />
+          <input type="password" placeholder="confirm password" required />
+          <button type="submit">Sign-Up</button>
+        </form>
+        <a href="/signin" className="sign-in-link">
+          Sign-In
+        </a>
+      </div>
     </div>
   );
-};
+}
 
-export default SignIn;
+export default SignInPage;

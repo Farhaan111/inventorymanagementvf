@@ -1,3 +1,10 @@
+body {
+  background-color: #f8f8f8; /* Set the page background color */
+  margin: 0; /* Remove default margin for a cleaner layout */
+  padding: 0; /* Remove default padding */
+  font-family: Arial, sans-serif; /* Optional: Set a font for the page */
+}
+
 .welcome-page {
     position: relative;
     height: 100vh;
@@ -16,15 +23,13 @@
 
   .welcome{
     position: absolute;
-    top: 35%;
+    top: 44%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center; 
-    letter-spacing: 5px;
     color: black;
     z-index: 2;
     font-size: 120%;
-    line-height: 0.5px;
   }
 
   .welcome-text {
@@ -34,9 +39,7 @@
     background-clip: text;
     font-weight: 600;
     font-size: 500%;
-    margin-bottom: -1px;
-    margin-left: -2px;
- 
+    margin-top: -5%;
   }
   
   .button-container {
@@ -51,10 +54,10 @@
     color: #E9D4FE;
     border-radius: 6px;
     border-color: transparent;
-    padding: 7px;
-    padding-left: 17px;
-    padding-right: 17px;
-    box-shadow: 1px 3px 3px #d3d1d1;
+    padding: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 1px 4px 4px #d3d1d1;
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
@@ -63,8 +66,6 @@
   .sign-up-button:hover{
     background-color: #34254d;
     color: #d5b7f3;
-    box-shadow: 0px 1px 1px #d3d1d1;
-
   }
 
   .sign-up-button:active{
@@ -76,9 +77,9 @@
     color: #D04A7B;
     border-radius: 6px;
     border-color: transparent;
-    padding: 7px;
-    padding-left: 17px;
-    padding-right: 17px;
+    padding: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-left: 2%;
     box-shadow: 1px 3px 3px #d3d1d1;
     font-size: 15px;
@@ -89,7 +90,6 @@
   .sign-in-button:hover{
     background-color: #d0c3f1;
     color: #872f4f;
-    box-shadow: 0px 1px 1px #d3d1d1;
   }
 
   .sign-in-button:active{

@@ -1,0 +1,78 @@
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .sign-in-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f8f8f8;
+  }
+  
+  .welcome-section {
+    text-align: center;
+    margin-right: 50px;
+  }
+  
+  .register-heading {
+    font-size: 3rem; /* Adjust size as needed */
+    font-weight: 500;
+    background: linear-gradient(to right, #0F1961, #9166A0, #FD355F);
+    -webkit-background-clip: text; /* Required for text gradient */
+    -webkit-text-fill-color: transparent; /* Makes the rest transparent */
+    background-clip: text; /* For some non-WebKit browsers */
+    color: transparent; /* Ensures the gradient shows */
+    text-align: left; /* Align the text to the left */
+  }
+  
+  .register-section {
+    background: linear-gradient(
+  to bottom,                   /* Change direction from left-right to top-bottom */
+  rgba(15, 25, 97, 0.15),       /* Reduced opacity for #0F1961 */
+  rgba(145, 102, 160, 0.15),    /* Reduced opacity for #9166A0 */
+  rgba(253, 53, 95, 0.15)       /* Reduced opacity for #FD355F */
+);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+  }
+  
+  .register-form input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .register-form button {
+    background-color: #8a2be2;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .register-form button:hover {
+    background-color: #6a1cb2;
+  }
+  
+  .sign-in-link {
+    color: #8a2be2;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+  }
+  
+  .sign-in-link:hover {
+    text-decoration: underline;
+  }
+  
