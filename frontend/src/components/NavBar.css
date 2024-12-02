@@ -1,31 +1,38 @@
-.nav-underline {
-    text-decoration: underline;
-  }
-  
-  .nav-underline.active {
-    font-weight: bold;
-  }
-.navbar{
-  background-color: #f8f8f8;
-  position: fixed;
-  width: 100%;
-  box-shadow: 1px 3px 3px #f0ecec;
+.navbar {
+  background-color: #f8f8f8; /* Light background for the navbar */
+  position: fixed; /* Fix the navbar at the top */
+  top: 0; /* Ensure it stays at the top */
+  width: 100%; /* Full-width navbar */
+  z-index: 1000; /* Keep navbar above other elements */
+  box-shadow: 1px 3px 3px #f0ecec; /* Subtle shadow for better visibility */
 }
-  .navbar .nav-link {
-    background: linear-gradient(to right, #0F1961, #9166A0, #FD355F);
-    -webkit-background-clip: text; /* Clip the gradient to the text */
-    
-    background-clip: text;
-    transition: opacity 0.3s ease;
-  }
-  .nav-link {-webkit-text-fill-color: transparent;}
-  
-  /* Hover effect to slightly emphasize text */
-  .navbar .nav-link:hover {
-    opacity: 0.8; /* Slight fade effect */
-  }
 
-  .navbar .nav-link.active {
-    font-weight: bold;
-    text-decoration: underline;
-  }
+.navbar .nav-link {
+  text-decoration: none; /* Remove default underline */
+  background: linear-gradient(to right, #0F1961, #9166A0, #FD355F); /* Gradient effect */
+  -webkit-background-clip: text; /* Clip the gradient to the text */
+  -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
+  transition: opacity 0.3s ease; /* Smooth hover effect */
+  font-size: 1rem; /* Ensure text is legible */
+}
+
+.navbar .nav-link:hover {
+  opacity: 0.8; /* Slight opacity change on hover */
+}
+
+.navbar .nav-link.active {
+  font-weight: bold; /* Highlight active link */
+  text-decoration: underline; /* Add underline to active link */
+}
+
+.nav {
+  list-style: none; /* Remove default list styles */
+  display: flex; /* Flex layout for horizontal alignment */
+  gap: 20px; /* Add spacing between links */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  display: inline-block; /* Ensure proper spacing and alignment */
+}
