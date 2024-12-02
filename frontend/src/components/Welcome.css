@@ -5,12 +5,13 @@
   }
   
   .bg-image {
-    margin-top: 4%;
+    margin-top: 10%;
     margin-left: 39%;
     z-index: -1;
     max-width: 90%; /* Ensures responsiveness */
     height: 50%;
     opacity: 0.17;
+    background-attachment: fixed;
   }
 
   .welcome{

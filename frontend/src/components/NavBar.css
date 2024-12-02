@@ -11,6 +11,7 @@
   text-decoration: none; /* Remove default underline */
   background: linear-gradient(to right, #0F1961, #9166A0, #FD355F); /* Gradient effect */
   -webkit-background-clip: text; /* Clip the gradient to the text */
+  background-clip: text;
   -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
   transition: opacity 0.3s ease; /* Smooth hover effect */
   font-size: 1rem; /* Ensure text is legible */
