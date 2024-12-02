@@ -1,0 +1,43 @@
+.about-page {
+    position: relative;
+    height: 100vh;
+    
+  }
+  
+  .bg-image {
+    margin-top: 4%;
+    margin-left: 39%;
+    z-index: -1;
+    max-width: 90%; /* Ensures responsiveness */
+    height: 50%;
+    opacity: 0.17;
+  }
+
+  .about-content{
+    margin-top: -50px;
+    margin: 10%;
+    letter-spacing: 5px;
+    color: black;
+    z-index: 2;
+    font-size: 120%;
+    margin-bottom: 100px;
+   
+  }
+
+  .trackify-text{
+    
+    background: linear-gradient(to right, #0F1961, #9166A0, #FD355F);
+    -webkit-background-clip: text; /* Clip the gradient to the text */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+    background-clip: text;
+    font-weight: 600;
+    font-size: 500%;
+    margin-left: -2px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    text-align: center; 
+ 
+  }
+  
