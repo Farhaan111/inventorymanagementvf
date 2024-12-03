@@ -5,7 +5,7 @@ function SignIn() {
   return (
     <div className="sign-in-page">
       <div className="register-section">
-        <h2 className="register-heading">Register</h2>
+        <h2 className="register-heading">Sign-In</h2>
         <form className="register-form">
           <input type="text" placeholder="username" required />
           <input type="password" placeholder="password" required />
